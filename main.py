@@ -21,8 +21,9 @@ def initialize():
     return window, canvas
 
 def update():
-    reflect_if_intersected(ball, paddle1)
-    reflect_if_intersected(ball, paddle2)
+    reflect_if_intersected(ball, paddle1, REFLECT_LEFT)
+    reflect_if_intersected(ball, paddle2, REFLECT_RIGHT)
+    
     ball.update()
     window.after(30, update)
 

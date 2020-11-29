@@ -1,5 +1,10 @@
 import math
 
+REFLECT_RIGHT = 90
+REFLECT_LEFT = -90
+REFLECT_TOP = -180
+REFLECT_BOTTOM = 180
+
 #функция отскока мяча
 def reflect_ball(ball, paddle):
     ball.angle = math.pi + 2 * -90 - ball.angle
@@ -20,7 +25,6 @@ def is_intersected(ball, paddle):
         return False
 
 
-def reflect_if_intersected(ball, paddle):
+def reflect_if_intersected(ball, paddle, direction):
     if is_intersected(ball, paddle):
-        reflect_ball(ball, paddle)
-
+        reflect_ball(ball, direction)

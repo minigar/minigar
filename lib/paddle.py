@@ -5,7 +5,7 @@ class Paddle:
         self.width = width
         self.height = height
         self.canvas = canvas
-        self.speed = 5
+        self.speed = 20
 
         self.paddle = self.canvas.create_rectangle(
             x - width,

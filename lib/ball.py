@@ -17,7 +17,7 @@ class Ball:
             fill = color
         )
 
-        self.angle = -5
+        self.angle = -1
         self.speed_x = math.cos(math.radians(self.angle)) * self.speed
         self.speed_y = math.sin(math.radians(self.angle)) * self.speed
         

@@ -1,10 +1,11 @@
 from tkinter import *
 
-from lib.paddle import Paddle
-from lib.ball import Ball
 from settings import *
 
-# устанавливаем окно
+from lib.paddle import Paddle
+from lib.ball import Ball
+from lib.physics import *
+
 def initialize():
     window = Tk()
     window.title("PING PONG")
@@ -20,8 +21,8 @@ def initialize():
     return window, canvas
 
 def update():
-    ball.reflect_if_intersected(paddle1)
-    ball.reflect_if_intersected(paddle2)
+    reflect_if_intersected(ball, paddle1)
+    reflect_if_intersected(ball, paddle2)
     ball.update()
     window.after(30, update)
 

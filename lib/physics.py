@@ -6,9 +6,11 @@ REFLECT_TOP = -180
 REFLECT_BOTTOM = 180
 
 #функция отскока мяча
-def reflect_ball(ball, paddle):
-    ball.angle = math.pi + 2 * -90 - ball.angle
-    
+def reflect_ball(ball, reflect_direction):
+    ball.angle = math.pi + 2 * -reflect_direction - ball.angle
+    # ball.angle = math.pi + 2 * 180 - ball.angle
+    # ball.angle = math.pi + 2 * 90 - ball.angle
+    # ball.angle = math.pi + 2 * -180 - ball.angle
     # ball.angle = ball.angle - 180
     ball.speed_x = math.cos(math.radians(ball.angle)) * ball.speed
     ball.speed_y = math.sin(math.radians(ball.angle)) * ball.speed

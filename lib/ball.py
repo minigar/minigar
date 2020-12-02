@@ -1,4 +1,5 @@
 import math
+from tkinter import Canvas
 
 #создаем класс для мяча
 class Ball:
@@ -17,7 +18,9 @@ class Ball:
             fill = color
         )
 
-        self.angle = -1
+        self.angle = -30
+        
+        
         self.speed_x = math.cos(math.radians(self.angle)) * self.speed
         self.speed_y = math.sin(math.radians(self.angle)) * self.speed
         
@@ -32,3 +35,4 @@ class Ball:
             self.pos_x + self.radius,
             self.pos_y + self.radius,
         )
+        

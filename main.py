@@ -1,5 +1,7 @@
 from tkinter import *
 
+
+
 from settings import *
 from lib.score import*
 from lib.player import Player
@@ -24,10 +26,23 @@ def initialize():
     return window, canvas
 
 def update():
-    reflect_if_intersected(ball, paddle1, REFLECT_HORISONTALLY)
-    reflect_if_intersected(ball, paddle2, REFLECT_HORISONTALLY)
-    reflect_if_intersected(ball, paddle3, REFLECT_VERTICALLY)
-    reflect_if_intersected(ball, paddle4, REFLECT_VERTICALLY)
+    reflect_if_intersected(ball, player1, REFLECT_HORISONTALLY)
+    reflect_if_intersected(ball, player2, REFLECT_HORISONTALLY)
+    reflect_if_intersected(ball, wallTop, REFLECT_VERTICALLY)
+    reflect_if_intersected(ball, wallBottom, REFLECT_VERTICALLY)
+
+    if is_intersected(ball, wallLeft):
+        player2.score += 1
+        canvas.itemconfigure(p_2_text, text=str(player2.score))
+        ball.set_position(WIDTH / 2, HEIGHT / 2)
+        ball.stop()
+
+    if is_intersected(ball, wallRight):
+        player1.score += 1
+        canvas.itemconfigure(p_1_text, text=str(player1.score))
+        ball.set_position(WIDTH / 2, HEIGHT / 2)
+        ball.stop()
+
 
     ball.update()
     window.after(30, update)
@@ -35,7 +50,7 @@ def update():
 
 window, canvas = initialize()
 
-paddle1 = Paddle(canvas,
+player1 = Player(canvas,
                     10,
                     HEIGHT / 2,
                     PADDLE_WIDTH,
@@ -44,48 +59,63 @@ paddle1 = Paddle(canvas,
                     "<w>",
                     "<s>")
 
-paddle2 = Paddle(canvas, 
-                    WIDTH + PADDLE_WIDTH - 10,
+player2 = Player(canvas, 
+                    WIDTH + PADDLE_WIDTH - 12,
                     HEIGHT / 2,
                     PADDLE_WIDTH,
                     PADDLE_HEIGHT,
                     "purple",
                     "<Up>",
                     "<Down>")
-paddle3 = Paddle(canvas,
-                    800,
-                    5,
-                    RECTANGLE_WIDTH,
-                    RECTANGLE_HEIGHT,
-                    "orange",
-                    False,
-                    False)
 
-paddle4 = Paddle(canvas,
+wallTop = Rectanle(canvas,
+                    WIDTH / 2,
+                    5,
+                    WIDTH,
+                    5,
+                    "orange")
+
+wallBottom = Rectanle(canvas,
+                    WIDTH / 2,
+                    HEIGHT - 3,
+                    WIDTH,
+                    5,
+                    "orange")
+
+wallRight = Rectanle(canvas,
+                    3,
                     800,
-                    HEIGHT + PADDLE_HEIGHT - 52,
-                    RECTANGLE_WIDTH,
-                    RECTANGLE_HEIGHT,
-                    "orange",
-                    False,
-                    False)
+                    WALL_WIGTH,
+                    WALL_HEIGHT,
+                    "white")
+
+wallLeft = Rectanle(canvas,
+                    800,
+                    800,
+                    WALL_WIGTH,
+                    WALL_HEIGHT,
+                    "white")
 
 p_1_text = canvas.create_text(
-                              WIDTH-WIDTH/6,
-                                PADDLE_HEIGHT/1,
-                                text=PLAYER_1_SCORE,
+                              WIDTH-WIDTH / 6,
+                                PADDLE_HEIGHT / 1,
+                                text="0",
                                 font="Arial 20",
                                 fill="white")
 
 p_2_text = canvas.create_text(WIDTH/6,
-                                PADDLE_HEIGHT/1,
-                                text=PLAYER_2_SCORE,
+                                PADDLE_HEIGHT / 1,
+                                text="0",
                                 font="Arial 20",
                                 fill="white")
 
 
 
-ball = Ball(canvas, WIDTH / 2, HEIGHT / 2, 10, "yellow")
+ball = Ball(canvas,
+            WIDTH / 2,
+            HEIGHT / 2,
+            10,
+            "yellow")
 
 update()
 

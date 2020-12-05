@@ -11,11 +11,11 @@ def reflect_ball(ball, reflect_direction):
 
 
 # проверка пересикания мяча и ракетки
-def is_intersected(ball, paddle):
-    if ball.pos_x <= paddle.pos_x + paddle.width and \
-        ball.pos_x >= paddle.pos_x - paddle.width and \
-        ball.pos_y <= paddle.pos_y + paddle.height and \
-        ball.pos_y >= paddle.pos_y - paddle.height:
+def is_intersected(ball, rect):
+    if ball.pos_x <= rect.pos_x + rect.width and \
+        ball.pos_x >= rect.pos_x - rect.width and \
+        ball.pos_y <= rect.pos_y + rect.height and \
+        ball.pos_y >= rect.pos_y - rect.height:
         return True
     else:
         return False

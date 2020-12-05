@@ -2,7 +2,8 @@ from tkinter import *
 
 from settings import *
 from lib.score import*
-from lib.paddle import Paddle
+from lib.player import Player
+from lib.rectangle import Rectanle
 from lib.ball import Ball
 from lib.physics import *
 

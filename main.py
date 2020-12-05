@@ -57,7 +57,7 @@ paddle3 = Rectangle(canvas,
                     5,
                     RECTANGLE_WIDTH,
                     RECTANGLE_HEIGHT,
-                    "yellow",
+                    "orange",
                     )
 
 paddle4 = Rectangle(canvas,
@@ -65,7 +65,7 @@ paddle4 = Rectangle(canvas,
                     HEIGHT + PADDLE_HEIGHT - 52,
                     RECTANGLE_WIDTH,
                     RECTANGLE_HEIGHT,
-                    "yellow",
+                    "orange",
                     )
 
 p_1_text = canvas.create_text(

@@ -1,13 +1,11 @@
 import math
 
-REFLECT_RIGHT = 90
-REFLECT_LEFT = -90
-REFLECT_TOP = -180
-REFLECT_BOTTOM = 180
+REFLECT_HORISONTALLY = 90
+REFLECT_VERTICALLY = 180
 
 #функция отскока мяча
 def reflect_ball(ball, reflect_direction):
-    ball.angle = math.pi + 2 * -reflect_direction - ball.angle
+    ball.angle = math.pi + 2 * reflect_direction - ball.angle
     ball.speed_x = math.cos(math.radians(ball.angle)) * ball.speed
     ball.speed_y = math.sin(math.radians(ball.angle)) * ball.speed
 

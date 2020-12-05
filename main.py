@@ -1,4 +1,3 @@
-from lib.rectangle import Rectangle
 from tkinter import *
 
 from settings import *
@@ -24,10 +23,10 @@ def initialize():
     return window, canvas
 
 def update():
-    reflect_if_intersected(ball, paddle1, REFLECT_LEFT)
-    reflect_if_intersected(ball, paddle2, REFLECT_RIGHT)
-    reflect_if_intersected(ball, paddle3, REFLECT_BOTTOM)
-    reflect_if_intersected(ball, paddle4, REFLECT_TOP)
+    reflect_if_intersected(ball, paddle1, REFLECT_HORISONTALLY)
+    reflect_if_intersected(ball, paddle2, REFLECT_HORISONTALLY)
+    reflect_if_intersected(ball, paddle3, REFLECT_VERTICALLY)
+    reflect_if_intersected(ball, paddle4, REFLECT_VERTICALLY)
 
     ball.update()
     window.after(30, update)
@@ -52,21 +51,23 @@ paddle2 = Paddle(canvas,
                     "purple",
                     "<Up>",
                     "<Down>")
-paddle3 = Rectangle(canvas,
+paddle3 = Paddle(canvas,
                     800,
                     5,
                     RECTANGLE_WIDTH,
                     RECTANGLE_HEIGHT,
                     "orange",
-                    )
+                    False,
+                    False)
 
-paddle4 = Rectangle(canvas,
+paddle4 = Paddle(canvas,
                     800,
                     HEIGHT + PADDLE_HEIGHT - 52,
                     RECTANGLE_WIDTH,
                     RECTANGLE_HEIGHT,
                     "orange",
-                    )
+                    False,
+                    False)
 
 p_1_text = canvas.create_text(
                               WIDTH-WIDTH/6,
@@ -84,29 +85,6 @@ p_2_text = canvas.create_text(WIDTH/6,
 
 
 ball = Ball(canvas, WIDTH / 2, HEIGHT / 2, 10, "yellow")
-
-def update_score(player):
-    global PLAYER_1_SCORE, PLAYER_2_SCORE
-    if player == "right":
-        PLAYER_1_SCORE += 1
-        canvas.itemconfig(p_1_text, text=PLAYER_1_SCORE)
-    else:
-        PLAYER_2_SCORE += 1
-        canvas.itemconfig(p_2_text, text=PLAYER_2_SCORE)
- 
-def spawn_ball():
-    global BALL_X_SPEED
-    # Выставляем мяч по центру
-    canvas.coords(ball, WIDTH/2-BALL_RADIUS/2,
-             HEIGHT/2-BALL_RADIUS/2,
-             WIDTH/2+BALL_RADIUS/2,
-             HEIGHT/2+BALL_RADIUS/2)
-    # Задаем мячу направление в сторону проигравшего игрока,
-    # но снижаем скорость до изначальной
-    BALL_X_SPEED = -(BALL_X_SPEED * -INITIAL_SPEED) / abs(BALL_X_SPEED)
-
-    
-
 
 update()
 
